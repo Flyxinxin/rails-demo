@@ -1,10 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
+<% content_for :title, "Brand: #{@brand.name}" %>
+<h1>Brand Detail</h1>
+
 <%= render @brand %>
 
-<div>
+<p>
   <%= link_to "Edit this brand", edit_brand_path(@brand) %> |
   <%= link_to "Back to brands", brands_path %>
+</p>
 
-  <%= button_to "Destroy this brand", @brand, method: :delete %>
-</div>
+<%= button_to "Destroy this brand", @brand, method: :delete, data: { confirm: "Are you sure?" } %>

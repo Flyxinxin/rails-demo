@@ -1,14 +1,19 @@
+<%# List all brands with action links %>
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Brands" %>
-
 <h1>Brands</h1>
 
 <div id="brands">
   <% @brands.each do |brand| %>
+    <%# Render each brand using the partial %>
     <%= render brand %>
+
+    <%# Action links %>
     <p>
-      <%= link_to "Show this brand", brand %>
+      <%= link_to "Show", brand %> |
+      <%= link_to "Edit", edit_brand_path(brand) %> |
+      <%= link_to "Delete", brand, method: :delete, data: { confirm: "Are you sure?" } %>
     </p>
   <% end %>
 </div>

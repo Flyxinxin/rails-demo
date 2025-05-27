@@ -1,12 +1,14 @@
-<div id="<%= dom_id brand %>">
-  <p>
-    <strong>Name:</strong>
-    <%= brand.name %>
-  </p>
+<%# display a single brand %>
+<div id="<%= dom_id brand %>" style="border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem;">
+  <p><strong>Name:</strong> <%= brand.name %></p>
+  <p><strong>Slug:</strong> <%= brand.slug %></p>
+  <p><strong>Description:</strong> <%= brand.description.presence || "No description provided." %></p>
 
-  <p>
-    <strong>Slug:</strong>
-    <%= brand.slug %>
-  </p>
-
+  <%# Display logo image if available %>
+  <% if brand.logo_url.present? %>
+    <p><strong>Logo:</strong><br>
+    <img src="<%= brand.logo_url %>" width="100" alt="<%= brand.name %> logo"></p>
+  <% else %>
+    <p><em>No logo provided.</em></p>
+  <% end %>
 </div>

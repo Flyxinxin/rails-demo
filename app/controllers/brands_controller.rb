@@ -1,3 +1,4 @@
+# CRUD methods to manage the data flow for the brand behavior.
 class BrandsController < ApplicationController
   before_action :set_brand, only: %i[show edit update destroy]
 
@@ -64,6 +65,6 @@ class BrandsController < ApplicationController
     end
 
     def brand_params
-      params.require(:brand).permit(:name, :slug)
+      params.require(:brand).permit(:name, :slug, :description, :logo_url)
     end
 end
