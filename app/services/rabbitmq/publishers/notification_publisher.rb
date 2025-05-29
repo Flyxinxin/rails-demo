@@ -1,9 +1,15 @@
-  module Rabbitmq
-    module Publishers
-      class NotificationPublisher < Rabbitmq::Publisher
-        def send_notification(user_id, message)
-          publish({ user_id: user_id, message: message }, "notifications.queue")
-        end
+module Rabbitmq
+  module Publishers
+    class NotificationPublisher < Rabbitmq::Publisher
+      def publish_brand_created(brand_data)
+        publish(
+          {
+            action: "create",
+            brand: brand_data
+          },
+          "notifications.queue"
+        )
       end
     end
   end
+end

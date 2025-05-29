@@ -26,6 +26,13 @@ class BrandsController < ApplicationController
 
     respond_to do |format|
       if @brand.save
+        Rabbitmq::Publishers::NotificationPublisher.new.publish(
+          {
+            action: "create",
+            brand: @brand.attributes.except("id", "created_at", "updated_at")
+          },
+          "notifications.queue"
+        )
         format.html { redirect_to @brand, notice: "Brand was successfully created." }
         format.json { render :show, status: :created, location: @brand }
       else
